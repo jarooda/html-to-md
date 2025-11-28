@@ -1,0 +1,19 @@
+<svg width="128" height="128" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect x="64.032" y="40.7446" width="13.5171" height="13.5171" rx="6.75856" transform="rotate(45 64.032 40.7446)" />
+  <rect x="104.719" y="54.2617" width="13.5171" height="13.5171" rx="6.75856" transform="rotate(45 104.719 54.2617)" />
+  <rect x="64.032" y="13.4399" width="52.0409" height="13.5171" rx="6.75856" transform="rotate(45 64.032 13.4399)" />
+  <rect x="54.4741" y="77.543" width="52.0409" height="13.5171" rx="6.75856" transform="rotate(-45 54.4741 77.543)" />
+  <rect x="36.7275" y="40.7446" width="52.0409" height="13.5171" rx="6.75856" transform="rotate(45 36.7275 40.7446)" />
+  <rect x="54.4741" y="104.848" width="52.0409" height="13.5171" rx="6.75856" transform="rotate(-45 54.4741 104.848)" />
+  <rect x="81.6436" y="104.848" width="52.0409" height="13.5171" rx="6.75856" transform="rotate(-45 81.6436 104.848)" />
+  <rect x="36.7275" y="68.0493" width="52.0409" height="13.5171" rx="6.75856" transform="rotate(45 36.7275 68.0493)" />
+  <rect x="9.55811" y="68.0493" width="52.0409" height="13.5171" rx="6.75856" transform="rotate(45 9.55811 68.0493)" />
+  <rect y="77.543" width="52.0409" height="13.5171" rx="6.75856" transform="rotate(-45 0 77.543)" />
+  <rect x="40.7913" y="36.6167" width="32.7769" height="13.5171" rx="6.75856" transform="rotate(-45 40.7913 36.6167)" />
+  <style>
+      rect { fill: #000; }
+      @media (prefers-color-scheme: dark) {
+          rect { fill: #FFF; }
+      }
+  </style>
+</svg>
