@@ -4,12 +4,13 @@ import { marked } from 'marked'
 import { useClipboard } from '@vueuse/core'
 import * as prettier from 'prettier/standalone'
 import prettierMarkdown from 'prettier/plugins/markdown'
+import { isString } from 'jalutils'
 
 const props = defineProps<{
   markdown: string
 }>()
 
-const hasContent = computed(() => props.markdown.trim().length > 0)
+const hasContent = computed(() => isString(props.markdown) && props.markdown.trim().length > 0)
 
 const renderedHtml = computed(() => {
   if (!hasContent.value) return ''
@@ -31,7 +32,7 @@ const copyMarkdown = () => {
 watch(
   () => props.markdown,
   async (newMarkdown) => {
-    if (!newMarkdown.trim()) {
+    if (!isString(newMarkdown) || !newMarkdown.trim()) {
       formattedMarkdown.value = ''
       return
     }

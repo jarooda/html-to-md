@@ -6,6 +6,7 @@ import HtmlConfigPanel from './components/HtmlConfigPanel.vue'
 import MarkdownPreview from './components/MarkdownPreview.vue'
 import { generateHtmlFromConfig } from './utils/htmlGenerator'
 import type { AnyHtmlConfig } from './types/htmlConfig'
+import { isNil } from 'jalutils'
 
 const turndownService = new TurndownService({
   headingStyle: 'atx',
@@ -16,7 +17,7 @@ turndownService.use(gfm)
 const currentConfig = ref<AnyHtmlConfig | null>(null)
 
 const markdownOutput = computed(() => {
-  if (!currentConfig.value) {
+  if (isNil(currentConfig.value)) {
     return ''
   }
 
