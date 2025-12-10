@@ -17,6 +17,9 @@ importers:
       '@vueuse/core':
         specifier: ^14.1.0
         version: 14.1.0(vue@3.5.25(typescript@5.9.3))
+      jalutils:
+        specifier: ^1.0.0
+        version: 1.0.0
       marked:
         specifier: ^17.0.1
         version: 17.0.1
@@ -1085,6 +1088,9 @@ packages:
   isexe@3.1.1:
     resolution: {integrity: sha512-LpB/54B+/2J5hqQ7imZHfdU31OlgQqx7ZicVlkm9kzg9/w8GKLEcFfJl/t7DCEDueOyBAD6zCCwTO6Fzs0NoEQ==}
     engines: {node: '>=16'}
+
+  jalutils@1.0.0:
+    resolution: {integrity: sha512-6whBQMMw0m0OLtUJUXFFoedhGBj1uhVpOuJS2XlFGX0YQvJfZ51z0xZu52f4KQPOtDsXYJ18hHTN3u62k0NpOw==}
 
   jiti@2.6.1:
     resolution: {integrity: sha512-ekilCSN1jwRvIbgeg/57YFh8qQDNbwDb9xT/qu2DAHbFFZUicIl4ygVaAvzveMhMVr3LnpSKTNnwt8PoOfmKhQ==}
@@ -2679,6 +2685,8 @@ snapshots:
   isexe@2.0.0: {}
 
   isexe@3.1.1: {}
+
+  jalutils@1.0.0: {}
 
   jiti@2.6.1: {}
 

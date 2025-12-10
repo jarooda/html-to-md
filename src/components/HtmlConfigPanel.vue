@@ -2,6 +2,7 @@
 import { ref, computed } from 'vue'
 import { HTML_TAGS } from '../types/htmlConfig'
 import type { AnyHtmlConfig } from '../types/htmlConfig'
+import { merge } from 'jalutils'
 
 const emit = defineEmits<{
   configChange: [config: AnyHtmlConfig | null]
@@ -85,16 +86,10 @@ function initializeConfig() {
   if (selectedTag.value === 'table') {
     const rows = Number(config.value.rows) || 3
     const cols = Number(config.value.cols) || 3
-    tableData.value.headers = Array(cols)
-      .fill(0)
-      .map((_, i) => `Header ${i + 1}`)
-    tableData.value.cells = Array(rows)
-      .fill(0)
-      .map((_, i) =>
-        Array(cols)
-          .fill(0)
-          .map((_, j) => `Cell ${i + 1},${j + 1}`),
-      )
+    tableData.value.headers = createArrayRange(cols, (i) => `Header ${i + 1}`)
+    tableData.value.cells = createArrayRange(rows, (i) =>
+      createArrayRange(cols, (j) => `Cell ${i + 1},${j + 1}`),
+    )
   }
 
   updateConfig()
@@ -108,9 +103,7 @@ function handleTableSizeChange() {
   const currentHeaderCount = tableData.value.headers.length
   if (cols > currentHeaderCount) {
     tableData.value.headers.push(
-      ...Array(cols - currentHeaderCount)
-        .fill(0)
-        .map((_, i) => `Header ${currentHeaderCount + i + 1}`),
+      ...createArrayRange(cols - currentHeaderCount, (i) => `Header ${currentHeaderCount + i + 1}`),
     )
   } else if (cols < currentHeaderCount) {
     tableData.value.headers = tableData.value.headers.slice(0, cols)
@@ -120,13 +113,9 @@ function handleTableSizeChange() {
   const currentRowCount = tableData.value.cells.length
   if (rows > currentRowCount) {
     tableData.value.cells.push(
-      ...Array(rows - currentRowCount)
-        .fill(0)
-        .map((_, i) =>
-          Array(cols)
-            .fill(0)
-            .map((_, j) => `Cell ${currentRowCount + i + 1},${j + 1}`),
-        ),
+      ...createArrayRange(rows - currentRowCount, (i) =>
+        createArrayRange(cols, (j) => `Cell ${currentRowCount + i + 1},${j + 1}`),
+      ),
     )
   } else if (rows < currentRowCount) {
     tableData.value.cells = tableData.value.cells.slice(0, rows)
@@ -137,9 +126,7 @@ function handleTableSizeChange() {
     if (cols > row.length) {
       return [
         ...row,
-        ...Array(cols - row.length)
-          .fill(0)
-          .map((_, j) => `Cell ${i + 1},${row.length + j + 1}`),
+        ...createArrayRange(cols - row.length, (j) => `Cell ${i + 1},${row.length + j + 1}`),
       ]
     } else if (cols < row.length) {
       return row.slice(0, cols)
@@ -169,7 +156,8 @@ function updateConfig() {
     baseConfig.headers = tableData.value.headers
     baseConfig.data = tableData.value.cells
   } else {
-    Object.assign(baseConfig, config.value)
+    const mergedConfig = merge(baseConfig, config.value)
+    Object.assign(baseConfig, mergedConfig)
   }
 
   emit('configChange', baseConfig as AnyHtmlConfig)
@@ -177,6 +165,11 @@ function updateConfig() {
 
 function handleTagChange() {
   initializeConfig()
+}
+
+// Helper function to create arrays with mapped values
+function createArrayRange<T>(length: number, mapFn: (index: number) => T): T[] {
+  return Array.from({ length }, (_, i) => mapFn(i))
 }
 </script>
 
